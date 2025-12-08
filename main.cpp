@@ -40,3 +40,9 @@ void load_tasks()
     }
     file.close();
 }
+
+int main()
+{
+    cout<<"This is To-Do list"<<endl;
+    return 0;
+}
