@@ -41,6 +41,24 @@ void load_tasks()
     file.close();
 }
 
+void save_Tasks()
+{
+    ofstream file("tasks.txt");
+    for(size_t i = 0; i < tasks.size(); i++)
+    {
+        if(tasks[i].completed)
+        {
+            file << "1 ";
+        }
+        else
+        {
+            file <<"0 ";
+        }
+        file << tasks[i].description <<endl;
+    }
+    file.close();
+}
+
 int main()
 {
     cout<<"This is To-Do list"<<endl;
