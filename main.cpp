@@ -59,6 +59,29 @@ void save_Tasks()
     file.close();
 }
 
+void show_Tasks()
+{
+    if(tasks.empty())
+    {
+        cout<<"\n No Tasks Yet ! Add one To Get Started."<<endl;
+        return ;
+    }
+    cout<<"\n === Your To-Do List ==="<<endl;
+    for(size_t i = 0, i < tasks.size(); i++)
+    {
+        cout<< i + 1 <<". ";
+        if(tasks[i].commpleted)
+        {
+            cout<< "[X]";
+        }
+        else
+        {
+            cout<<"[ ]";
+        }
+        cout<< tasks[i].desrription <<endl;
+    }
+}
+
 int main()
 {
     cout<<"This is To-Do list"<<endl;
