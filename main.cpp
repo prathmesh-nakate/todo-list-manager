@@ -82,6 +82,20 @@ void show_Tasks()
     }
 }
 
+void add_Task()
+{
+    Task t;
+    cout<<"\nEnter Tasks Description : ";
+    cin.ignore();
+    getline(cin, t.description);
+    t.complete = False;
+
+    tasks.push_back(t);
+    saveTasks();
+
+    cout<<"Task Added !" <<endl;
+}
+
 int main()
 {
     cout<<"This is To-Do list"<<endl;
