@@ -13,7 +13,7 @@ struct Task
 
 vector<Task> tasks
 
-void load_tasks()
+void load_Tasks()
 {
     ifstream file("tasks.txt");
     if(!file.is_open())
@@ -43,42 +43,42 @@ void load_tasks()
 
 void save_Tasks()
 {
-    ofstream file("tasks.txt");
-    for(size_t i = 0; i < tasks.size(); i++)
+    ofstream file("Tasks.txt");
+    for(size_t i = 0; i < Tasks.size(); i++)
     {
-        if(tasks[i].completed)
+        if(Tasks[i].completed)
         {
-            file << "1 ";
+            file <<"1 ";
         }
         else
         {
             file <<"0 ";
         }
-        file << tasks[i].description <<endl;
+        file << Tasks[i].description <<endl;
     }
     file.close();
 }
 
 void show_Tasks()
 {
-    if(tasks.empty())
+    if(Tasks.empty())
     {
         cout<<"\n No Tasks Yet ! Add one To Get Started."<<endl;
         return ;
     }
     cout<<"\n === Your To-Do List ==="<<endl;
-    for(size_t i = 0, i < tasks.size(); i++)
+    for(size_t i = 0, i < Tasks.size(); i++)
     {
         cout<< i + 1 <<". ";
-        if(tasks[i].commpleted)
+        if(Tasks[i].commpleted)
         {
-            cout<< "[X]";
+            cout<<"[X]";
         }
         else
         {
             cout<<"[ ]";
         }
-        cout<< tasks[i].desrription <<endl;
+        cout<<Tasks[i].desription <<endl;
     }
 }
 
@@ -90,10 +90,32 @@ void add_Task()
     getline(cin, t.description);
     t.complete = False;
 
-    tasks.push_back(t);
+    Tasks.push_back(t);
     saveTasks();
 
     cout<<"Task Added !" <<endl;
+}
+
+void mark_Complete()
+{
+    show_Tasks();
+    if(Tasks.empty())
+    return;
+
+    int num;
+    cout<<"\nEnter Tasks No. To Mark Tasks As Complete : ";
+    cin>>num;
+
+    if(num > 0 && num <= Tasks.size())
+    {
+        Tasks[num - 1].completed= true;
+        save_Tasks();
+        cout<<"Tasks Marked As Completed ! "<<endl;
+    }
+    else
+    {
+        cout<<"Invalid Tasks Number ! "<<endl;
+    }
 }
 
 int main()
