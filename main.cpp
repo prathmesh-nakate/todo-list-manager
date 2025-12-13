@@ -36,17 +36,17 @@ void load_Tasks()
             t.completed = true;
             t.description = line.substr(2);
         }
-        task.push_back(t);
+        tasks.push_back(t);
     }
     file.close();
 }
 
 void save_Tasks()
 {
-    ofstream file("Tasks.txt");
+    ofstream file("tasks.txt");
     for(size_t i = 0; i < Tasks.size(); i++)
     {
-        if(Tasks[i].completed)
+        if(tasks[i].completed)
         {
             file <<"1 ";
         }
@@ -54,23 +54,23 @@ void save_Tasks()
         {
             file <<"0 ";
         }
-        file << Tasks[i].description <<endl;
+        file <<tasks[i].description <<endl;
     }
     file.close();
 }
 
 void show_Tasks()
 {
-    if(Tasks.empty())
+    if(tasks.empty())
     {
         cout<<"\n No Tasks Yet ! Add one To Get Started."<<endl;
         return ;
     }
     cout<<"\n === Your To-Do List ==="<<endl;
-    for(size_t i = 0, i < Tasks.size(); i++)
+    for(size_t i = 0, i < tasks.size(); i++)
     {
         cout<< i + 1 <<". ";
-        if(Tasks[i].commpleted)
+        if(tasks[i].commpleted)
         {
             cout<<"[X]";
         }
@@ -78,7 +78,7 @@ void show_Tasks()
         {
             cout<<"[ ]";
         }
-        cout<<Tasks[i].desription <<endl;
+        cout<<tasks[i].desription <<endl;
     }
 }
 
@@ -90,7 +90,7 @@ void add_Task()
     getline(cin, t.description);
     t.complete = False;
 
-    Tasks.push_back(t);
+    tasks.push_back(t);
     saveTasks();
 
     cout<<"Task Added !" <<endl;
@@ -99,22 +99,44 @@ void add_Task()
 void mark_Complete()
 {
     show_Tasks();
-    if(Tasks.empty())
+    if(tasks.empty())
     return;
 
     int num;
     cout<<"\nEnter Tasks No. To Mark Tasks As Complete : ";
     cin>>num;
 
-    if(num > 0 && num <= Tasks.size())
+    if(num > 0 && num <= tasks.size())
     {
-        Tasks[num - 1].completed= true;
+        tasks[num - 1].completed= true;
         save_Tasks();
         cout<<"Tasks Marked As Completed ! "<<endl;
     }
     else
     {
         cout<<"Invalid Tasks Number ! "<<endl;
+    }
+}
+
+void delete_Tasks()
+{
+    show_Tasks();
+    if(tasks.empty())
+    return;
+
+    int num;
+    cout<<"\nEnter The Task Number To Delete : ";
+    cin>>num;
+
+    if(num > 0 && num <= tasks.size())
+    {
+        tasks.erase(tasks.begin() + num - 1);
+        save_Tasks();
+        cout<<"Tasks Deleted !"<<endl;
+    }
+    else
+    {
+        cout<<"Invalid Tasks Number !"<<endl;
     }
 }
 
