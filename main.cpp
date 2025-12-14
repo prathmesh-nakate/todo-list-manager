@@ -11,7 +11,7 @@ struct Task
     bool completed;
 };
 
-vector<Task> tasks
+vector<Task> tasks;
 
 void load_Tasks()
 {
@@ -33,7 +33,7 @@ void load_Tasks()
         }
         else
         {
-            t.completed = true;
+            t.completed = false;
             t.description = line.substr(2);
         }
         tasks.push_back(t);
@@ -44,7 +44,7 @@ void load_Tasks()
 void save_Tasks()
 {
     ofstream file("tasks.txt");
-    for(size_t i = 0; i < Tasks.size(); i++)
+    for(size_t i = 0; i < tasks.size(); i++)
     {
         if(tasks[i].completed)
         {
@@ -67,31 +67,31 @@ void show_Tasks()
         return ;
     }
     cout<<"\n === Your To-Do List ==="<<endl;
-    for(size_t i = 0, i < tasks.size(); i++)
+    for(size_t i = 0; i < tasks.size(); i++)
     {
         cout<< i + 1 <<". ";
-        if(tasks[i].commpleted)
+        if(tasks[i].completed)
         {
-            cout<<"[X]";
+            cout<<"[X] ";
         }
         else
         {
-            cout<<"[ ]";
+            cout<<"[ ] ";
         }
-        cout<<tasks[i].desription <<endl;
+        cout<<tasks[i].description<<endl;
     }
 }
 
-void add_Task()
+void add_Tasks()
 {
     Task t;
     cout<<"\nEnter Tasks Description : ";
     cin.ignore();
     getline(cin, t.description);
-    t.complete = False;
+    t.completed = false;
 
     tasks.push_back(t);
-    saveTasks();
+    save_Tasks();
 
     cout<<"Task Added !" <<endl;
 }
@@ -142,6 +142,51 @@ void delete_Tasks()
 
 int main()
 {
-    cout<<"This is To-Do list"<<endl;
+    load_Tasks();
+
+    cout<<"==================================================="<<endl;
+    cout<<"             Simple To-Do List Manager             "<<endl;
+    cout<<"==================================================="<<endl;
+    
+    while(true)
+    {
+        cout<<"\n---- Menu ----"<<endl;
+        cout<<"1. View Tasks"<<endl;
+        cout<<"2. Add Tasks"<<endl;
+        cout<<"3. Mark Tasks Complete"<<endl;
+        cout<<"4. Delete Tasks"<<endl;
+        cout<<"5. Exit"<<endl;
+
+        cout<<"\nChoose (1-5) : ";
+
+        int choice;
+        cin>>choice;
+
+        if(choice == 1)
+        {
+            show_Tasks();
+        }
+        else if(choice == 2)
+        {
+            add_Tasks();
+        }
+        else if(choice == 3)
+        {
+            mark_Complete();
+        }
+        else if(choice == 4)
+        {
+            delete_Tasks();
+        }
+        else if(choice == 5)
+        {
+            cout<<"\n GoodBye ! "<<endl;
+            break;
+        }
+        else
+        {
+            cout<<"Invalid Choice ! Try Again."<<endl;
+        }
+    }
     return 0;
 }
