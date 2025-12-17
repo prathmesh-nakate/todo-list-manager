@@ -108,9 +108,26 @@ void mark_Complete()
 
     if(num > 0 && num <= tasks.size())
     {
-        tasks[num - 1].completed= true;
-        save_Tasks();
-        cout<<"Tasks Marked As Completed ! "<<endl;
+        cout<<"Task: " << tasks[num - 1].description << endl;
+        cout<<"Task is Marked as complete. " <<endl;
+        cout<<"If Want to Remove The Marked Task ? (y/n) : ";
+        
+        char choice;
+        cin >> choice;
+        
+        if(choice == 'y' || choice == 'Y')
+        {
+            tasks.erase(tasks.begin() + num - 1);
+            save_Tasks();
+            cout<<"Task Completed and Removed!"<<endl;
+        }
+        else
+        {
+            // Just mark as complete, don't remove
+            tasks[num - 1].completed = true;
+            save_Tasks();
+            cout<<"Task Marked As Completed!"<<endl;
+        }
     }
     else
     {
@@ -153,7 +170,7 @@ int main()
         cout<<"\n---- Menu ----"<<endl;
         cout<<"1. View Tasks"<<endl;
         cout<<"2. Add Tasks"<<endl;
-        cout<<"3. Mark Tasks Complete"<<endl;
+        cout<<"3. Mark Tasks Complete & Remove Option"<<endl;
         cout<<"4. Delete Tasks"<<endl;
         cout<<"5. Exit"<<endl;
 

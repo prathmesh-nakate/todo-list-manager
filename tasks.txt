@@ -1,3 +1,4 @@
-1 Go To Dentist.
-0 Mobile Repaire.
+1 Mobile Repaire.
 0 dinner
+0 Dentist.
+0 Doctor

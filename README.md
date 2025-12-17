@@ -10,7 +10,7 @@ Manage your daily tasks efficiently with this lightweight CLI tool. All tasks ar
 
 - **View Tasks** - Display all tasks with completion status
 - **Add Tasks** - Create new tasks with descriptions
-- **Mark Complete** - Mark tasks as done
+- **Mark Complete** - Mark tasks as done with remove the Task Option
 - **Delete Tasks** - Remove completed or unwanted tasks
 - **Auto-Save** - Tasks persist between sessions
 
@@ -54,6 +54,8 @@ Choose (1-5): 1
 
 - Tasks are stored in `tasks.txt`
 - Format: `0 description` (incomplete) or `1 description` (complete)
+- format: `y/Y description` (Yes to Delete Task) or `n/N description` (Not to Delete Task)
+- Format: `[X] description` (Task Marked As Completed) or `[ ] description` (Task Not Marked As Completed)
 - All changes are automatically saved
 
 ## Project Structure
